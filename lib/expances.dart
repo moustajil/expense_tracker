@@ -10,10 +10,12 @@ class ExpancesScreen extends StatefulWidget {
 class _ExpancesScreenState extends State<ExpancesScreen> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Scaffold(
+      body: Column(
       children: [
         Text('Chart'),Text('Expances .....')
       ],
+  ),
     );
   }
 }
