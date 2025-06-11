@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: ExpancesScreen(),
+    home: ExpensesScreen(),
   ));
 }
 
