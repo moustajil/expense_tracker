@@ -1,4 +1,5 @@
 import 'package:expens_tracker/model/expanse.dart';
+import 'package:expens_tracker/widget/expance-list/expance_item.dart';
 import 'package:flutter/material.dart';
 
 class ExpensesList extends StatelessWidget {
@@ -13,11 +14,7 @@ class ExpensesList extends StatelessWidget {
         itemCount: expensesList.length,
         itemBuilder: (ctx, index) {
           final expense = expensesList[index];
-          return ListTile(
-            title: Text(expense.title),
-            subtitle: Text('${expense.date.toLocal()}'),
-            trailing: Text('\$${expense.amount.toStringAsFixed(2)}'),
-          );
+          return ExpanceItem(expanse: expense,);
         },
       ),
     );

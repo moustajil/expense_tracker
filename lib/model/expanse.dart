@@ -1,5 +1,15 @@
 import 'package:expens_tracker/enum/category_enum.dart';
+import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
+
+
+const CategoryIcons = {
+  CategoryEnum.food: Icons.fastfood,
+  CategoryEnum.travel: Icons.airplanemode_active,
+  CategoryEnum.work: Icons.work,
+  CategoryEnum.leisure: Icons.movie,
+};
+
 
 class Expanse {
   static final _uuid = Uuid();
@@ -17,4 +27,8 @@ class Expanse {
   final double amount;
   final DateTime date;
   final CategoryEnum categoryEnum;
+
+  String get formattedDate {
+    return '${date.day}/${date.month}/${date.year}';
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:expens_tracker/enum/category_enum.dart';
-import 'package:expens_tracker/expamces_list.dart';
+import 'package:expens_tracker/widget/expance-list/expamces_list.dart';
 import 'package:expens_tracker/model/expanse.dart';
+import 'package:expens_tracker/widget/new_expance.dart';
 
 import 'package:flutter/material.dart';
 
@@ -19,9 +20,21 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
     Expanse(title: "Cinima", amount: 18.50, date: DateTime.now(), categoryEnum: CategoryEnum.travel),
   ];
 
+  void _addExapnsesOverly(){
+    showModalBottomSheet(context: context, builder: (ctx) =>const  NewExpense());
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Expenses Tracker'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: _addExapnsesOverly,
+          ),
+        ],
+      ),
       body: Column(
         children: [
           const Text('Chart'), // You can replace this with a real chart widget
