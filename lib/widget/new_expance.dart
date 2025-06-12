@@ -1,9 +1,10 @@
 import 'package:expens_tracker/enum/category_enum.dart';
+import 'package:expens_tracker/model/expanse.dart';
 import 'package:flutter/material.dart';
 
 class NewExpense extends StatefulWidget {
-  const NewExpense({super.key});
-
+  const NewExpense({super.key,required this.onAddExpense});
+  final Function(Expanse expense)? onAddExpense;
   @override
   State<NewExpense> createState() => _NewExpenseState();
 }
@@ -30,7 +31,50 @@ class _NewExpenseState extends State<NewExpense> {
     }
   }
 
-  void _submiteExpanceData(){}
+  void _submiteExpanceData(){
+    final title = _titleController.text;
+    final amount = double.tryParse(_amountController.text);
+
+
+    if (title.isEmpty || amount == null || _selectedDate == null || _category == null || amount <= 0) {
+      showDialog(context: context, builder: (ctx) => AlertDialog(
+        title: const Text('Invalid Input'),
+        content: const Text('Please enter valid data.'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+            child: const Text('Okay'),
+          ),
+        ],
+      ));
+      return;
+    }else {
+      final newExpense = Expanse(
+        title: title,
+        amount: amount,
+        date: _selectedDate!,
+        categoryEnum: _category!,
+      );
+
+      widget.onAddExpense!(newExpense);
+
+      _titleController.clear();
+      _amountController.clear();
+      setState(() {
+        _selectedDate = null;
+        _category = CategoryEnum.food; 
+      });
+
+      Navigator.of(context).pop(); 
+    }
+  }
+
+
+  void addExpances(){
+
+  }
 
   @override
   void dispose() {

@@ -17,7 +17,7 @@ class ExpanceItem extends StatelessWidget {
           color: Colors.white,
         ),
         child: ListTile(
-          title: Text(expanse.title),
+          title: Text(expanse.title,style: Theme.of(context).textTheme.bodyLarge,),
           subtitle: Text('${expanse.date.toLocal()}'),
           trailing: Text('\$${expanse.amount.toStringAsFixed(2)}'),
           leading: CircleAvatar(

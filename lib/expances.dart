@@ -21,7 +21,35 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
   ];
 
   void _addExapnsesOverly(){
-    showModalBottomSheet(context: context, builder: (ctx) =>const  NewExpense());
+    
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context, builder: (ctx) =>NewExpense(
+      
+      onAddExpense: _addExpense,
+    ));
+  }
+
+  void _addExpense(Expanse expense) {
+    setState(() {
+      expensesList.add(expense);
+    });
+  }
+
+  void _removeExpense(Expanse expense) {
+    final expenseIndex = expensesList.indexOf(expense);
+    setState(() {
+      expensesList.remove(expense);
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('${expense.title} removed'),action: SnackBarAction(
+                label: 'Undo',
+                onPressed: () {
+                  setState(() {
+                  });
+                },
+              ),behavior: SnackBarBehavior.floating,backgroundColor: Colors.redAccent,),
+            );
   }
   @override
   Widget build(BuildContext context) {
@@ -36,9 +64,10 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
         ],
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text('Chart'), // You can replace this with a real chart widget
-          ExpensesList(expensesList: expensesList,),
+          Center(child:  Text('Chart',style: Theme.of(context).textTheme.bodyLarge,)), // You can replace this with a real chart widget
+          expensesList.isEmpty ? Center(child: Text('The List Of Expancive is Empty')) : ExpensesList(expensesList: expensesList, onRemoveExpense: _removeExpense),
         ],
       ),
     );
