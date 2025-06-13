@@ -37,7 +37,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
   }
 
   void _removeExpense(Expanse expense) {
-    final expenseIndex = expensesList.indexOf(expense);
+    final _ = expensesList.indexOf(expense);
     setState(() {
       expensesList.remove(expense);
     });
