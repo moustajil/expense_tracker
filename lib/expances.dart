@@ -66,7 +66,6 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Center(child:  Text('Chart',style: Theme.of(context).textTheme.bodyLarge,)), // You can replace this with a real chart widget
           expensesList.isEmpty ? Center(child: Text('The List Of Expancive is Empty')) : ExpensesList(expensesList: expensesList, onRemoveExpense: _removeExpense),
         ],
       ),
